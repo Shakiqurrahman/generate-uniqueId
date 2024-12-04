@@ -1,0 +1,24 @@
+{
+    "name": "mini-id",
+    "version": "1.0.2",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "unique-id",
+        "shortid",
+        "uuid",
+        "collision-free",
+        "miniId",
+        "mini-id"
+    ],
+    "author": "Shakiqur Rahman",
+    "license": "MIT",
+    "description": "A lightweight and customizable unique ID generator with zero collisions.",
+    "devDependencies": {
+        "@types/node": "^22.10.1",
+        "typescript": "^5.7.2"
+    }
+}
