@@ -4,11 +4,23 @@ import { getRandomBytes } from "./utils/randomBytes";
 
 /**
  * Generate a unique ID.
- * @param input - A prefix/suffix (string) or custom length (number).
- * @param secondInput - A suffix if first input is a prefix or a custom length (number).
+ *
+ * This function generates a unique identifier using a combination of a timestamp,
+ * random bytes, and a machine ID. You can customize the generated ID by providing
+ * a prefix, a suffix, and/or a custom length.
+ *
+ * @param {string | number} [input] - A **string** prefix or a **number** custom length.
+ * @param {string | number} [secondInput] - A **string** suffix or a **number** custom length (overrides first input if both are numbers).
+ * @param {number} [thirdInput] - A **number** custom length (if only length is required).
+ *
+ * @returns {string} - The generated unique ID with optional customizations.
  */
-export function miniId(input?: string | number, secondInput?: string | number): string {
-    const randomBytesLength = 7; // Fixed length for random bytes
+export function miniId(
+    input?: string | number,
+    secondInput?: string | number,
+    thirdInput?: number
+): string {
+    const randomBytesLength = 7;
     const timestamp = Date.now().toString(36); // Base36 timestamp
     const randomBytes = encodeBase62(getRandomBytes(randomBytesLength));
     const machineId = encodeBase62(getMachineId());
@@ -18,18 +30,33 @@ export function miniId(input?: string | number, secondInput?: string | number): 
     let suffix = "";
     let customLength = 17;
 
-    if (typeof input === "string") prefix = input;
-    if (typeof secondInput === "string") suffix = secondInput;
-    if (typeof input === "number") customLength = input;
-    if (typeof secondInput === "number") customLength = secondInput;
+    if (typeof input === "string") {
+        prefix = input;
+    } else if (typeof input === "number") {
+        customLength = input;
+    }
 
-    // Ensure minimum length of 17 characters
+    if (typeof secondInput === "string") {
+        suffix = secondInput;
+    } else if (typeof secondInput === "number") {
+        customLength = secondInput;
+    }
+
+    if (typeof thirdInput === "number") {
+        customLength = thirdInput;
+    }
+
     customLength = Math.max(customLength, 17);
 
-    // Assemble ID
+    // Assemble ID core: timestamp + randomBytes + machineId
     const idCore = `${timestamp}${randomBytes}${machineId}`;
     const fullID = `${prefix}${idCore}${suffix}`;
 
-    // Trim to custom length, if applicable
-    return fullID.slice(0, customLength);
+    // If full ID exceeds custom length, trim the core part only to preserve prefix and suffix
+    if (fullID.length > customLength) {
+        const coreLength = customLength - prefix.length - suffix.length;
+        return `${prefix}${idCore.slice(0, coreLength)}${suffix}`;
+    }
+
+    return fullID;
 }
