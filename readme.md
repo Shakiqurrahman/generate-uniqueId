@@ -1,4 +1,4 @@
-# Unique ID Generator
+# Mini Id - Unique ID Generator
 
 A lightweight, scalable, and collision-free ID generator for Node.js and TypeScript projects. This library generates globally unique IDs using cryptographic randomness with optional support for prefixes, suffixes, and custom lengths.
 
@@ -47,3 +47,7 @@ miniId(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 | `prefix`       | `string` | A string to be added at the beginning of the generated ID. Useful for identifying or categorizing IDs by type or purpose.                                                                                                |
 | `suffix`       | `string` | A string to be appended to the end of the generated ID. Useful for additional context or identification.                                                                                                                 |
 | `customLength` | `number` | (Optional) Specifies the total desired length of the generated ID, including the prefix and suffix. Must be at least 15. If not provided, the default length is 14 characters plus the lengths of the prefix and suffix. |
+
+
+## Author
+Developed with ❤️ by Shakiqur Rahman.
