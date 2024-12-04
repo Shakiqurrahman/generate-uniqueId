@@ -4,29 +4,48 @@ A lightweight, scalable, and collision-free ID generator for Node.js and TypeScr
 
 ---
 
-## Features
+## Quickstart
 
-- **Global Uniqueness**: Ensures 0% collision using cryptographic randomness.
-- **Short IDs**: Generates short, scalable IDs (default: 14 characters).
-- **Customizable**: Supports custom prefixes, suffixes, and lengths (minimum length: 15 characters).
-- **TypeScript Support**: Fully typed for safe and easy development.
-- **Base62 Encoding**: Compact and efficient representation of IDs.
+**1. Install**
+
+```shell
+npm install uuid
+```
+
+**2. Create a UUID**
+
+ESM-syntax (must use named exports):
+
+```javascript
+import { v4 as uuidv4 } from "uuid";
+uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
+```
+
+... CommonJS:
+
+```javascript
+const { v4: uuidv4 } = require("uuid");
+uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+```
 
 ---
 
-## Installation
+## Features
 
-Install the package via npm:
+-   **Global Uniqueness**: Ensures 0% collision using cryptographic randomness.
+-   **Short IDs**: Generates short, scalable IDs (default: 14 characters).
+-   **Customizable**: Supports custom prefixes, suffixes, and lengths (minimum length: 15 characters).
+-   **TypeScript Support**: Fully typed for safe and easy development.
+-   **Base62 Encoding**: Compact and efficient representation of IDs.
 
-```bash
-npm install mini-id
+---
 
-```
+### uuid.parse(str)
 
-Parameters
-generateShortUniqueID(prefixOrLength?: string | number, suffixOrLength?: string | number, customLength?: number): string
+Convert UUID string to array of bytes
 
-Parameter	Type	Description
-prefixOrLength	`string	number`
-suffixOrLength	`string	number`
-customLength	number	(Optional) Specifies the desired total length of the generated ID. If not provided, the ID length defaults to 14 + prefix/suffix. Minimum total length: 15.
+| Parameter      | Type     | Description                                                                                                                                                                                                              |
+| -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `prefix`       | `string` | A string to be added at the beginning of the generated ID. Useful for identifying or categorizing IDs by type or purpose.                                                                                                |
+| `suffix`       | `string` | A string to be appended to the end of the generated ID. Useful for additional context or identification.                                                                                                                 |
+| `customLength` | `number` | (Optional) Specifies the total desired length of the generated ID, including the prefix and suffix. Must be at least 15. If not provided, the default length is 14 characters plus the lengths of the prefix and suffix. |
