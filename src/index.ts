@@ -25,11 +25,12 @@ export function miniId(
     const randomBytes = encodeBase62(getRandomBytes(randomBytesLength));
     const machineId = encodeBase62(getMachineId());
 
-    // Parse inputs
+    // Initialize variables for prefix, suffix, and custom length
     let prefix = "";
     let suffix = "";
     let customLength = 17;
 
+    // Determine the prefix and custom length from input parameters
     if (typeof input === "string") {
         prefix = input;
     } else if (typeof input === "number") {
@@ -46,6 +47,7 @@ export function miniId(
         customLength = thirdInput;
     }
 
+    // Ensure minimum length of 17 characters
     customLength = Math.max(customLength, 17);
 
     // Assemble ID core: timestamp + randomBytes + machineId
