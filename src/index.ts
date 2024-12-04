@@ -28,7 +28,7 @@ export function miniId(
     // Initialize variables for prefix, suffix, and custom length
     let prefix = "";
     let suffix = "";
-    let customLength = 17;
+    let customLength = 17; // Default minimum length for the core part of the ID
 
     // Determine the prefix and custom length from input parameters
     if (typeof input === "string") {
@@ -47,18 +47,18 @@ export function miniId(
         customLength = thirdInput;
     }
 
-    // Ensure minimum length of 17 characters
+    // Ensure a minimum length of 17 characters for the core part of the ID
     customLength = Math.max(customLength, 17);
 
     // Assemble ID core: timestamp + randomBytes + machineId
     const idCore = `${timestamp}${randomBytes}${machineId}`;
-    const fullID = `${prefix}${idCore}${suffix}`;
 
-    // If full ID exceeds custom length, trim the core part only to preserve prefix and suffix
-    if (fullID.length > customLength) {
-        const coreLength = customLength - prefix.length - suffix.length;
-        return `${prefix}${idCore.slice(0, coreLength)}${suffix}`;
-    }
+    // Calculate the length of the core part, taking into account the prefix and suffix
+    const coreLength = customLength - prefix.length - suffix.length;
 
-    return fullID;
+    // If the core length is positive, slice the core part to fit within the custom length
+    const fullCore = coreLength > 0 ? idCore.slice(0, coreLength) : idCore;
+
+    // Return the final ID with prefix, core part, and suffix
+    return `${prefix}${fullCore}${suffix}`;
 }
