@@ -1,6 +1,6 @@
 {
     "name": "mini-id",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
@@ -19,7 +19,9 @@
         "url": "https://github.com/Shakiqurrahman/generate-uniqueId"
     },
     "homepage": "https://github.com/Shakiqurrahman/generate-uniqueId#readme",
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "author": "Shakiqur Rahman",
     "license": "MIT",
     "description": "A lightweight and customizable unique ID generator with zero collisions.",
