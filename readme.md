@@ -9,23 +9,23 @@ A lightweight, scalable, and collision-free ID generator for Node.js and TypeScr
 **1. Install**
 
 ```shell
-npm install uuid
+npm install mini-id
 ```
 
-**2. Create a UUID**
+**2. Create a Mini Id**
 
 ESM-syntax (must use named exports):
 
 ```javascript
-import { v4 as uuidv4 } from "uuid";
-uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
+import { miniId } from "mini-id";
+miniId(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 ```
 
 ... CommonJS:
 
 ```javascript
-const { v4: uuidv4 } = require("uuid");
-uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+const { miniId } = require("mini-id");
+miniId(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 ```
 
 ---
@@ -40,9 +40,7 @@ uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
 ---
 
-### uuid.parse(str)
-
-Convert UUID string to array of bytes
+### Parameters
 
 | Parameter      | Type     | Description                                                                                                                                                                                                              |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
